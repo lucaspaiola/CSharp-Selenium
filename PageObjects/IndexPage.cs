@@ -8,7 +8,10 @@ namespace CSharp_Selenium_Project.PageObjects
   {
     private readonly IWebDriver _driver;
     private WebDriverWait _wait;
-    public IWebElement emailInput => _driver.FindElement(By.Id("email"));
+    private IWebElement emailInput => _driver.FindElement(By.Id("email"));
+		private IWebElement imgEntering => _driver.FindElement(By.Id("enterimg"));
+		private IWebElement signInButton => _driver.FindElement(By.Id("btn1"));
+		private IWebElement skipSignInButton => _driver.FindElement(By.Id("btn2"));
 
     public IndexPage(IWebDriver driver)
     {
@@ -20,12 +23,90 @@ namespace CSharp_Selenium_Project.PageObjects
     {
       try
       {
-        _wait.Until(driver => driver.FindElement(By.Id("email")).Displayed);
+        _wait.Until(_driver => emailInput.Displayed);
         return true;
       }
       catch (WebDriverTimeoutException)
       {
         return false;
+      }
+    }
+
+		public bool IsImgEnterginVisible()
+    {
+      try
+      {
+        _wait.Until(_driver => imgEntering.Displayed);
+        return true;
+      }
+      catch (WebDriverTimeoutException)
+      {
+        return false;
+      }
+    }
+
+		public bool IsSignInButtonVisible()
+    {
+      try
+      {
+        _wait.Until(_driver => signInButton.Displayed);
+        return true;
+      }
+      catch (WebDriverTimeoutException)
+      {
+        return false;
+      }
+    }
+
+		public bool IsSkipSignInButtonVisible()
+    {
+      try
+      {
+        _wait.Until(_driver => skipSignInButton.Displayed);
+        return true;
+      }
+      catch (WebDriverTimeoutException)
+      {
+        return false;
+      }
+    }
+
+    public void ClickOnSignInButton() 
+    {
+      try
+      {
+        _wait.Until(_driver => signInButton.Displayed);
+        signInButton.Click();
+      }
+      catch (WebDriverTimeoutException)
+      {
+        Console.WriteLine("Failed to click on Sign In button");
+      }
+    }
+
+    public void ClickOnSkipSignInButton() 
+    {
+      try
+      {
+        _wait.Until(_driver => skipSignInButton.Displayed);
+        skipSignInButton.Click();
+      }
+      catch (WebDriverTimeoutException)
+      {
+        Console.WriteLine("Failed to click on Skip Sign In button");
+      }
+    }
+
+    public void ClickOnEnteringImage() 
+    {
+      try
+      {
+        _wait.Until(_driver => imgEntering.Displayed);
+        imgEntering.Click();
+      }
+      catch (WebDriverTimeoutException)
+      {
+        Console.WriteLine("Failed to click on Entering Image");
       }
     }
   }
