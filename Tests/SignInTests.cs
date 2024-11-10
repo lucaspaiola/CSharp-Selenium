@@ -8,8 +8,8 @@ namespace CSharp_Selenium_Project.Tests
   [TestFixture]
   public class SignInTests
   {
-    private IWebDriver _driver;
-    private SignInPage _signInPage;
+    private IWebDriver _driver = null!;
+    private SignInPage _signInPage = null!;
 
     [SetUp]
     public void Setup()

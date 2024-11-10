@@ -8,8 +8,8 @@ namespace CSharp_Selenium_Project.Tests
   [TestFixture]
   public class IndexPageTests
   {
-    private IWebDriver _driver;
-    private IndexPage _indexPage;
+    private IWebDriver _driver = null!;
+    private IndexPage _indexPage = null!;
 
     [SetUp]
     public void Setup()
